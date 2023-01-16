@@ -14,9 +14,9 @@ export default function Form({ productList, setProductList }) {
     //Da\dos do Form
     const [form, onChange, restForm] = useForm({ client: "", product: "", qty: 1, deliveryDate: "" })
     //Dados Clientes
-    const [dataClient, isloadingClient, erroClient, upClient, setUpClient] = useRequestData('http://localhost:3003/clients');
+    const [dataClient, isloadingClient, erroClient, upClient, setUpClient] = useRequestData('https://casefull-minimarket.onrender.com/clients');
     //Dados Produtos
-    const [dataProduct, isloadingProduct, erroProduct] = useRequestData('http://localhost:3003/products');
+    const [dataProduct, isloadingProduct, erroProduct] = useRequestData('https://casefull-minimarket.onrender.com/products');
     //---------------------------------- CLIENTEAS ----------------------------------------------------------------
     //CLIENTE SELECIONADO
     const selectClient = !isloadingClient && dataClient && dataClient.find((dClient) => {
@@ -30,7 +30,7 @@ export default function Form({ productList, setProductList }) {
         {
             "name": form.client
         }
-        axios.post('http://localhost:3003/client', body, {})
+        axios.post('https://casefull-minimarket.onrender.com/client', body, {})
             .then((response) => {
                 setUpClient(!upClient);
                 console.log(response);
@@ -74,7 +74,7 @@ export default function Form({ productList, setProductList }) {
                 "products": productListDB
             }
 
-            axios.post('http://localhost:3003/order', body, {})
+            axios.post('https://casefull-minimarket.onrender.com/order', body, {})
                 .then((response) => {
                     console.log(response);
                     goToEndOrder(navigate)
